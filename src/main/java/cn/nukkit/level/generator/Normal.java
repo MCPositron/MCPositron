@@ -197,7 +197,8 @@ public class Normal extends Generator {
 
         // this should run before all other populators so that we don't do things like generate ground cover on bedrock
         // or something
-        this.generationPopulators = ImmutableList.of(new PopulatorBedrock(), new PopulatorDeepslate(), new PopulatorGroundCover());
+        this.generationPopulators =
+                ImmutableList.of(new PopulatorBedrock(), new PopulatorDeepslate(), new PopulatorGroundCover());
 
         this.populators = ImmutableList.of(
                 new PopulatorOre(STONE, new OreType[] {
@@ -214,14 +215,14 @@ public class Normal extends Generator {
                     new OreType(Block.get(BlockID.STONE, BlockStone.DIORITE), 10, 33, 8, 80),
                     new OreType(Block.get(BlockID.STONE, BlockStone.ANDESITE), 10, 33, 8, 80)
                 }),
-                new PopulatorOre(BlockID.DEEPSLATE, new OreType[]{
-                        new OreType(Block.get(BlockID.DEEPSLATE_COAL_ORE), 20, 17, 0, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_COPPER_ORE), 20, 9, -64, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_IRON_ORE), 20, 9, -64, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_REDSTONE_ORE), 8, 8, -64, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_LAPIS_ORE), 1, 7, -64, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_GOLD_ORE), 2, 9, -64, 8),
-                        new OreType(Block.get(BlockID.DEEPSLATE_DIAMOND_ORE), 1, 8, -64, 8)
+                new PopulatorOre(BlockID.DEEPSLATE, new OreType[] {
+                    new OreType(Block.get(BlockID.DEEPSLATE_COAL_ORE), 20, 17, 0, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_COPPER_ORE), 20, 9, -64, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_IRON_ORE), 20, 9, -64, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_REDSTONE_ORE), 8, 8, -64, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_LAPIS_ORE), 1, 7, -64, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_GOLD_ORE), 2, 9, -64, 8),
+                    new OreType(Block.get(BlockID.DEEPSLATE_DIAMOND_ORE), 1, 8, -64, 8)
                 }),
                 new PopulatorCaves(),
                 // new PopulatorRavines()
