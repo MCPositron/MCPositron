@@ -2,12 +2,7 @@ package cn.nukkit.dispenser;
 
 import cn.nukkit.api.PowerNukkitOnly;
 import cn.nukkit.block.*;
-import cn.nukkit.block.BlockCrops;
-import cn.nukkit.block.BlockMushroom;
 import cn.nukkit.block.impl.BlockDispenser;
-import cn.nukkit.block.impl.BlockDoublePlant;
-import cn.nukkit.block.impl.BlockSapling;
-import cn.nukkit.block.impl.BlockTallGrass;
 import cn.nukkit.item.Item;
 import cn.nukkit.math.BlockFace;
 
@@ -25,11 +20,7 @@ public class DyeDispenseBehavior extends DefaultDispenseBehavior {
         Block target = block.getSide(face);
 
         if (item.isFertilizer()) {
-            if (target instanceof BlockCrops
-                    || target instanceof BlockSapling
-                    || target instanceof BlockTallGrass
-                    || target instanceof BlockDoublePlant
-                    || target instanceof BlockMushroom) {
+            if (target.isFertilizable()) {
                 target.onActivate(item);
 
             } else {

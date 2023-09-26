@@ -367,6 +367,8 @@ public class Player extends EntityHuman
     @Setter
     private Boolean openSignFront = null;
 
+    private Boolean flySneaking = false;
+
     /**
      * Constructor for unit testing
      *
@@ -2203,12 +2205,8 @@ public class Player extends EntityHuman
     }
 
     public void sendCameraPresets() {
-        var presetListTag = new ListTag<CompoundTag>("presets");
-        for (var preset : CameraPreset.getPresets().values()) {
-            presetListTag.add(preset.serialize());
-        }
         var pk = new CameraPresetsPacket();
-        pk.setData(new CompoundTag().putList("presets", presetListTag));
+        pk.getPresets().addAll(CameraPreset.getPresets().values());
         sendPacket(pk);
     }
 
@@ -2293,6 +2291,9 @@ public class Player extends EntityHuman
                     }
                     this.inAirTicks = 0;
                     this.highestPosition = this.y();
+                    if (this.isGliding()) {
+                        this.setGliding(false);
+                    }
                 } else {
                     this.lastInAirTick = server.getTick();
                     // 检测玩家是否异常飞行
@@ -2351,6 +2352,26 @@ public class Player extends EntityHuman
                 }
 
                 if (this.getFoodData() != null) this.getFoodData().update(tickDiff);
+
+                // Elytra check and durability calculation
+                if (this.isGliding()) {
+                    PlayerInventory playerInventory = this.getInventory();
+                    if (playerInventory != null) {
+                        Item chestplate = playerInventory.getChestplate();
+                        if ((chestplate == null || chestplate.getId() != ItemID.ELYTRA)) {
+                            this.setGliding(false);
+                        } else if (this.age % (20 * (chestplate.getEnchantmentLevel(Enchantment.ID_DURABILITY) + 1))
+                                == 0) {
+                            int newDamage = chestplate.getDamage() + 1;
+                            if (newDamage < chestplate.getMaxDurability()) {
+                                chestplate.setDamage(newDamage);
+                                playerInventory.setChestplate(chestplate);
+                            } else {
+                                this.setGliding(false);
+                            }
+                        }
+                    }
+                }
             }
 
             if (!this.isSleeping()) {
@@ -4844,5 +4865,13 @@ public class Player extends EntityHuman
                 throw new IllegalArgumentException("Block at this position is not a sign");
             }
         }
+    }
+
+    public void setFlySneaking(boolean sneaking) {
+        this.flySneaking = sneaking;
+    }
+
+    public boolean isFlySneaking() {
+        return this.flySneaking;
     }
 }

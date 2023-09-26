@@ -9,9 +9,7 @@ import cn.nukkit.api.Since;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.block.BlockLog;
-import cn.nukkit.block.property.ArrayBlockProperty;
 import cn.nukkit.block.property.BlockProperties;
-import cn.nukkit.block.property.BlockProperty;
 import cn.nukkit.block.property.value.WoodType;
 import cn.nukkit.block.state.BlockState;
 import cn.nukkit.block.state.IBlockState;
@@ -23,14 +21,10 @@ import org.jetbrains.annotations.NotNull;
  */
 @PowerNukkitDifference(info = "Extends BlockLog instead of BlockSolidMeta only in PowerNukkit", since = "1.4.0.0-PN")
 public class BlockWood extends BlockLog {
-    @PowerNukkitOnly
-    @Since("1.4.0.0-PN")
-    public static final BlockProperty<WoodType> OLD_LOG_TYPE = new ArrayBlockProperty<>(
-            "old_log_type", true, new WoodType[] {WoodType.OAK, WoodType.SPRUCE, WoodType.BIRCH, WoodType.JUNGLE});
 
     @PowerNukkitOnly
     @Since("1.4.0.0-PN")
-    public static final BlockProperties PROPERTIES = new BlockProperties(OLD_LOG_TYPE, PILLAR_AXIS);
+    public static final BlockProperties PROPERTIES = new BlockProperties(WoodType.PROPERTY, PILLAR_AXIS);
 
     public static final int OAK = 0;
     public static final int SPRUCE = 1;
@@ -70,13 +64,13 @@ public class BlockWood extends BlockLog {
     @PowerNukkitOnly
     @Since("1.4.0.0-PN")
     public WoodType getWoodType() {
-        return getPropertyValue(OLD_LOG_TYPE);
+        return getPropertyValue(WoodType.PROPERTY);
     }
 
     @PowerNukkitOnly
     @Since("1.4.0.0-PN")
     public void setWoodType(WoodType woodType) {
-        setPropertyValue(OLD_LOG_TYPE, woodType);
+        setPropertyValue(WoodType.PROPERTY, woodType);
     }
 
     @Override

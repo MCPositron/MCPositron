@@ -917,8 +917,7 @@ public abstract class Entity extends Location implements Metadatable {
     @PowerNukkitXOnly
     @Since("1.19.21-r2")
     public static OK<?> registerCustomEntity(CustomEntityProvider customEntityProvider) {
-        if (!Server.getInstance().isEnableExperimentMode()
-                || Server.getInstance().getConfig("settings.waterdogpe", false)) {
+        if (!Server.getInstance().isEnableExperimentMode()) {
             return new OK<>(
                     false,
                     "The server does not have the experiment mode feature enabled.Unable to register custom entity!");
@@ -3377,7 +3376,8 @@ public abstract class Entity extends Location implements Metadatable {
             outerScaffolding:
             for (int i = minX; i <= maxX; i++) {
                 for (int j = minZ; j <= maxZ; j++) {
-                    if (getLevel().getBlockIdAt(i, Y, j) == BlockID.SCAFFOLDING) {
+                    Location location = new Location(i, Y, j, getLevel());
+                    if (location.getLevelBlock(false).getId() == BlockID.SCAFFOLDING) {
                         setDataFlag(DATA_FLAGS_EXTENDED, DATA_FLAG_OVER_SCAFFOLDING, true);
                         break outerScaffolding;
                     }

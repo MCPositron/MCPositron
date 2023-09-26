@@ -1,4 +1,4 @@
-package cn.nukkit.block.impl;
+package cn.nukkit.block;
 
 import static cn.nukkit.block.property.CommonBlockProperties.UPPER_BLOCK;
 
@@ -6,9 +6,6 @@ import cn.nukkit.api.DeprecationDetails;
 import cn.nukkit.api.PowerNukkitDifference;
 import cn.nukkit.api.PowerNukkitOnly;
 import cn.nukkit.api.Since;
-import cn.nukkit.block.Block;
-import cn.nukkit.block.BlockFlowable;
-import cn.nukkit.block.BlockID;
 import cn.nukkit.block.property.ArrayBlockProperty;
 import cn.nukkit.block.property.BlockProperties;
 import cn.nukkit.block.property.value.DoublePlantType;
@@ -278,5 +275,10 @@ public class BlockDoublePlant extends BlockFlowable {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean isFertilizable() {
+        return true;
     }
 }
