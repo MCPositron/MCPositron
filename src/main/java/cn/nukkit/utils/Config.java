@@ -23,6 +23,7 @@ import org.yaml.snakeyaml.Yaml;
  * @author MagicDroidX (Nukkit)
  */
 @Log4j2
+@Deprecated
 public class Config {
 
     public static final int DETECT = -1; // Detect by file extension

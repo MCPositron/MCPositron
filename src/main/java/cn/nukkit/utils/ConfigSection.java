@@ -6,6 +6,7 @@ import java.util.*;
  * @author fromgate
  * @since 26.04.2016
  */
+@Deprecated
 public class ConfigSection extends LinkedHashMap<String, Object> {
 
     /**

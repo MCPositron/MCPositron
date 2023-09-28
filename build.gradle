@@ -51,6 +51,9 @@ dependencies {
     implementation 'org.lz4:lz4-java:1.8.0'
     implementation 'org.xerial.snappy:snappy-java:1.1.10.1'
     implementation 'org.jetbrains:annotations:24.0.1'
+    implementation 'org.spongepowered:configurate-yaml:4.1.2'
+    implementation 'org.spongepowered:configurate-gson:4.1.2'
+    implementation 'org.spongepowered:configurate-hocon:4.1.2'
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
