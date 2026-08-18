@@ -1,1 +1,1 @@
-# MCPositron is discontinued. Use [PowerNukkitX 2.0](https://github.com/PowerNukkitX/PowerNukkitX) instead.
+# MCPositron is discontinued. Use [Lumi](https://github.com/KoshakMineDEV/Lumi) instead.
